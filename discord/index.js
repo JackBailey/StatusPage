@@ -27,6 +27,8 @@ module.exports.init = async function () {
 		}
 	}
 
+	global.client = client;
+
 	// Login client
 
 	client.once(Events.ClientReady, (c) => {

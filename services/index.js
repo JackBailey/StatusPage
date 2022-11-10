@@ -1,5 +1,6 @@
 const fs = require("fs");
 const config = require("../config.json");
+const { log } = require("./log");
 
 function getService(name) {
 	const serviceConfig = JSON.parse(fs.readFileSync("./services.json", "utf8"));
@@ -7,7 +8,7 @@ function getService(name) {
 	return serviceConfig[name];
 }
 
-function updateService(name, status, description) {
+function updateService(name, status, description, user) {
 	const service = getService(name);
 	if (status) service.status = status;
 	service.customDescription = description || false;
@@ -15,19 +16,43 @@ function updateService(name, status, description) {
 	const serviceConfig = allServices();
 	serviceConfig[name] = service;
 	fs.writeFileSync("./services.json", JSON.stringify(serviceConfig, null, 4));
+
+	var logDescription = `Status for \`${name}\` has been set to \`${service.status}\``;
+
+	if (description) {
+		logDescription += ` with the description \`${description}\``;
+	}
+
+	log({
+		user: user,
+		title: "Updated status",
+		description: logDescription,
+		color: config.statuses[service.status].color,
+	});
 }
 
-function resetService(name) {
-	var status = Object.keys(config.statuses).find((status) => config.statuses[status].default);
+function reset(name, user) {
+	var defaultStatus = Object.keys(config.statuses).find((status) => config.statuses[status].default);
 
-	updateService(name, status);
-}
-
-function reset(name) {
-	if (name) return resetService(name);
+	if (name) {
+		log({
+			user: user,
+			title: "Reset status",
+			description: `Status for \`${name}\` has been reset to \`${defaultStatus}\``,
+			color: config.statuses[defaultStatus].color,
+		});
+		return updateService(name, defaultStatus);
+	}
 
 	// Reset all services if name not specified
-	Object.keys(allServices()).forEach((service) => resetService(service));
+
+	log({
+		user: user,
+		title: "Reset status",
+		description: `Status for All Services have been reset to \`${defaultStatus}\``,
+		color: config.statuses[defaultStatus].color,
+	});
+	Object.keys(allServices()).forEach((service) => updateService(service, defaultStatus));
 }
 
 function allServices() {
