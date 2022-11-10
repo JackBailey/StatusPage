@@ -2,6 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const path = require("node:path");
 const fs = require("node:fs");
 const servicesConfig = require("../../services.json");
+const config = require("../../config.json");
 
 const commandsPath = path.join(__dirname, "status");
 const commandFiles = fs.readdirSync(commandsPath).filter((file) => file.endsWith(".js"));
@@ -22,7 +23,7 @@ module.exports = {
 		.addSubcommand((subcommand) =>
 			subcommand
 				.setName("get")
-				.setDescription("Sets a service's status")
+				.setDescription("Gets a service's status")
 				.addStringOption((option) => {
 					option.setName("service").setDescription("The service to get the status for").setRequired(false);
 					Object.keys(servicesConfig).map((service) => {
@@ -32,6 +33,39 @@ module.exports = {
 						});
 					});
 					return option;
+				})
+		)
+		.addSubcommand((subcommand) =>
+			subcommand
+				.setName("set")
+				.setDescription("Sets a service's status")
+				.addStringOption((option) => {
+					option.setName("service").setDescription("The service to set the status for").setRequired(true);
+					Object.keys(servicesConfig).map((service) => {
+						option.addChoices({
+							name: service,
+							value: service,
+						});
+					});
+					return option;
+				})
+				.addStringOption((option) => {
+					option.setName("status").setDescription("The status to set the service to").setRequired(true);
+
+					Object.keys(config.statuses).forEach((status) => {
+						option.addChoices({
+							name: status,
+							value: status,
+						});
+					});
+
+					return option;
+				})
+				.addStringOption((option) => {
+					return option
+						.setName("custom-description")
+						.setDescription("A custom description to set for the chosen service's status")
+						.setRequired(false);
 				})
 		),
 	async execute(interaction) {

@@ -3,7 +3,6 @@ const serviceEmbed = require("../../modules/serviceEmbed");
 
 module.exports = {
 	async execute(interaction) {
-		console.log(interaction.options.getString("service"));
 		var serviceOption = interaction.options.getString("service");
 
 		var embeds = [];

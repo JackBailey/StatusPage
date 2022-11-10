@@ -11,7 +11,7 @@ function updateService(name, status, description) {
 	if (status) service.status = status;
 	service.customDescription = description || false;
 
-	const serviceConfig = listServices();
+	const serviceConfig = allServices();
 	serviceConfig[name] = service;
 	fs.writeFileSync("./services.json", JSON.stringify(serviceConfig, null, 4));
 }
