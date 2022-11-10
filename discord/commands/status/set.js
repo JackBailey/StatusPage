@@ -3,7 +3,6 @@ const services = require("../../../services/index");
 
 module.exports = {
 	async execute(interaction) {
-		console.log(interaction);
 		var serviceOption = interaction.options.getString("service");
 		var statusOption = interaction.options.getString("status");
 		var descriptionOption = interaction.options.getString("custom-description");

@@ -67,6 +67,21 @@ module.exports = {
 						.setDescription("A custom description to set for the chosen service's status")
 						.setRequired(false);
 				})
+		)
+		.addSubcommand((subcommand) =>
+			subcommand
+				.setName("reset")
+				.setDescription("Resets a service's status")
+				.addStringOption((option) => {
+					option.setName("service").setDescription("The service to reset the status for").setRequired(false);
+					Object.keys(servicesConfig).map((service) => {
+						option.addChoices({
+							name: service,
+							value: service,
+						});
+					});
+					return option;
+				})
 		),
 	async execute(interaction) {
 		const subcommand = interaction.options.getSubcommand(false);
