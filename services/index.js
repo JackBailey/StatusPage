@@ -1,9 +1,9 @@
 const fs = require("fs");
 
 function getService(name) {
-	const services = JSON.parse(fs.readFileSync("./services.json", "utf8"));
-	if (!services.hasOwnProperty(name)) return undefined;
-	return services[name];
+	const serviceConfig = JSON.parse(fs.readFileSync("./services.json", "utf8"));
+	if (!serviceConfig.hasOwnProperty(name)) return undefined;
+	return serviceConfig[name];
 }
 
 function updateService(name, status, description) {
@@ -11,14 +11,14 @@ function updateService(name, status, description) {
 	if (status) service.status = status;
 	service.customDescription = description || false;
 
-	const services = listServices();
-	services[name] = service;
-	fs.writeFileSync("./services.json", JSON.stringify(services, null, 4));
+	const serviceConfig = listServices();
+	serviceConfig[name] = service;
+	fs.writeFileSync("./services.json", JSON.stringify(serviceConfig, null, 4));
 }
 
-function listServices() {
-	const services = JSON.parse(fs.readFileSync("./services.json", "utf8"));
-	return services;
+function allServices() {
+	const serviceConfig = JSON.parse(fs.readFileSync("./services.json", "utf8"));
+	return serviceConfig;
 }
 
 module.exports = {
@@ -26,5 +26,5 @@ module.exports = {
 		get: getService,
 		update: updateService,
 	},
-	list: listServices,
+	all: allServices,
 };

@@ -1,6 +1,7 @@
 const { Client, Events, Collection, GatewayIntentBits } = require("discord.js");
 const fs = require("node:fs");
 const path = require("node:path");
+const config = require("../config.json");
 require("dotenv").config();
 
 module.exports.init = async function () {

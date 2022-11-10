@@ -3,7 +3,11 @@
 const { REST, Routes } = require("discord.js");
 const fs = require("fs");
 const config = require("../config.json");
+const serviceConfig = require("../services.json");
 require("dotenv").config("../.env");
+
+global.serviceConfig = serviceConfig;
+global.config = config;
 
 if (!process?.env?.TOKEN) throw new Error("Discord client token not defined!");
 if (!config?.discord?.bot?.client_id) throw new Error("Discord client id not defined!");
