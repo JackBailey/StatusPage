@@ -1,0 +1,32 @@
+{
+    "discord": {
+        "authorizedRoles": [
+            1040297058462089336
+        ],
+        "logChannel": {
+            "id": 1040297035078828074
+        },
+        "statusChannel": {
+            "id": 1040297027583623278,
+            "lastMessage": 0
+        }
+    },
+    "statuses": {
+        "online": {
+            "default": true,
+            "color": "3AA55D",
+            "title": "Online",
+            "description": "Service is up & Operational"
+        },
+        "limited": {
+            "color": "FAA81A",
+            "title": "Limited Functionality",
+            "description": "Some aspects of this service are temporarily unavailable"
+        },
+        "offline": {
+            "color": "ED4145",
+            "title": "Offline",
+            "description": "Service is down & Not operational"
+        }
+    }
+}

@@ -1,0 +1,4 @@
+.env
+config.json
+services.json
+node_modules
