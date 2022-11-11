@@ -1,6 +1,10 @@
 var socket = io();
 
 function updateHTML(services, config) {
+	const params = new Proxy(new URLSearchParams(window.location.search), {
+		get: (searchParams, prop) => searchParams.get(prop),
+	});
+
 	function serviceHTML(service, id, alwaysShowDesc) {
 		function toTitleCase(str) {
 			return str.replace(/\w\S*/g, function (txt) {
@@ -8,7 +12,7 @@ function updateHTML(services, config) {
 			});
 		}
 
-		return `<a class="status" href="?service=${id}">
+		return `<${params.service !== null ? "div" : 'a href="?service=' + id + '"'} class="status">
             <div class="statusHeader">
                 <p class="title">${service.title}</p>
                 <p class="currentStatus" style="color: #${config.statuses[service.status].color};">${toTitleCase(service.status)}</p>            
@@ -20,12 +24,8 @@ function updateHTML(services, config) {
 					  "</p>"
 					: ""
 			}
-        </a>`;
+        </${params.service !== null ? "div" : 'a"'}>`;
 	}
-
-	const params = new Proxy(new URLSearchParams(window.location.search), {
-		get: (searchParams, prop) => searchParams.get(prop),
-	});
 
 	var serviceData = [];
 	Object.keys(services).forEach((id) => {
