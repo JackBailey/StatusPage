@@ -7,6 +7,8 @@ const serviceConfig = require("../services.json");
 require("dotenv").config("../.env");
 const Logger = require("@ptkdev/logger");
 
+var args = process.argv.slice(2);
+
 const logger = new Logger();
 
 global.serviceConfig = serviceConfig;
@@ -35,7 +37,14 @@ const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
 		logger.info(`Started refreshing ${commands.length} application (/) commands.`, "Discord");
 
 		// The put method is used to fully refresh all commands in the guild with the current set
-		const data = await rest.put(Routes.applicationGuildCommands(config.discord.bot.client_id, config.discord.bot.guild_id), { body: commands });
+
+		var data;
+
+		if (args.length == 0) {
+			data = await rest.put(Routes.applicationCommands(config.discord.bot.client_id), { body: commands });
+		} else {
+			data = await rest.put(Routes.applicationGuildCommands(config.discord.bot.client_id, args[0]), { body: commands });
+		}
 
 		logger.info(`Successfully reloaded ${data.length} application (/) commands.`, "Discord");
 	} catch (error) {
