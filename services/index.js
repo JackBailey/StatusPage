@@ -25,6 +25,8 @@ function updateService(name, status, description, user) {
 		logDescription += ` with the description \`${description}\``;
 	}
 
+	updateEmbed();
+
 	// Don't log if invoked via script
 	if (!user) return;
 
