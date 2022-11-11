@@ -46,9 +46,9 @@ function updateHTML(services, config) {
 }
 
 async function main() {
-	const configResponse = await fetch("http://localhost:3000/api/config");
+	const configResponse = await fetch("/api/config");
 	const config = await configResponse.json();
-	const statusesResponse = await fetch("http://localhost:3000/api/statuses");
+	const statusesResponse = await fetch("/api/statuses");
 	const statusesData = await statusesResponse.json();
 
 	const title = document.getElementById("title");
