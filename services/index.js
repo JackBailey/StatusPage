@@ -3,7 +3,6 @@ const config = require("../config.json");
 const { log } = require("../discord/modules/log");
 const statusEmbed = require("../discord/modules/statusEmbed");
 const serviceEmbed = require("../discord/modules/serviceEmbed");
-const { isObject } = require("util");
 
 function getService(name) {
 	const serviceConfig = JSON.parse(fs.readFileSync("./services.json", "utf8"));
@@ -33,10 +32,10 @@ function updateService(name, status, description, user) {
 		service,
 	});
 
-	logger.info(`${user.username}#${user.discriminator} updated ${name}'s status to ${service.status}`, "Discord");
-
 	// Don't log if invoked via script
 	if (!user) return;
+
+	logger.info(`${user.username}#${user.discriminator} updated ${name}'s status to ${service.status}`, "Discord");
 
 	log({
 		user: user,
@@ -60,10 +59,13 @@ function reset(name, user) {
 			description: `Status for \`${name}\` has been reset to \`${defaultStatus}\``,
 			color: config.statuses[defaultStatus].color,
 		});
+		logger.info(`${user.username}#${user.discriminator} updated ${name}'s status to ${defaultStatus}`, "Discord");
 		return updateService(name, defaultStatus);
 	}
 
 	// Reset all services if name not specified
+
+	logger.info(`${user.username}#${user.discriminator} updated all of the service's statuses to ${defaultStatus}`, "Discord");
 
 	log({
 		user: user,
