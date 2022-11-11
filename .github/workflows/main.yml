@@ -25,5 +25,6 @@ jobs:
                   port: ${{ secrets.SSH_PORT }}
                   script: |
                       cd ~/statusbot
+                      git reset --hard
                       git pull
-                      docker compose up -d --build
+                      docker compose up --build --force-recreate
