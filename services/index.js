@@ -33,6 +33,8 @@ function updateService(name, status, description, user) {
 		service,
 	});
 
+	logger.info(`${user.username}#${user.discriminator} updated ${name}'s status to ${service.status}`, "Discord");
+
 	// Don't log if invoked via script
 	if (!user) return;
 

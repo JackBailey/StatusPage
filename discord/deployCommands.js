@@ -5,9 +5,13 @@ const fs = require("fs");
 const config = require("../config.json");
 const serviceConfig = require("../services.json");
 require("dotenv").config("../.env");
+const Logger = require("@ptkdev/logger");
+
+const logger = new Logger();
 
 global.serviceConfig = serviceConfig;
 global.config = config;
+global.logger = logger;
 
 if (!process?.env?.TOKEN) throw new Error("Discord client token not defined!");
 if (!config?.discord?.bot?.client_id) throw new Error("Discord client id not defined!");
@@ -28,12 +32,12 @@ const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
 // and deploy your commands!
 (async () => {
 	try {
-		console.log(`Started refreshing ${commands.length} application (/) commands.`);
+		logger.info(`Started refreshing ${commands.length} application (/) commands.`, "Discord");
 
 		// The put method is used to fully refresh all commands in the guild with the current set
 		const data = await rest.put(Routes.applicationGuildCommands(config.discord.bot.client_id, config.discord.bot.guild_id), { body: commands });
 
-		console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+		logger.info(`Successfully reloaded ${data.length} application (/) commands.`, "Discord");
 	} catch (error) {
 		// And of course, make sure you catch and log any errors!
 		console.error(error);

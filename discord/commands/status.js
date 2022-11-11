@@ -86,7 +86,7 @@ module.exports = {
 	async execute(interaction) {
 		const subcommand = interaction.options.getSubcommand(false);
 		if (!commands.hasOwnProperty(subcommand)) {
-			console.log(`[WARNING] The subcommand at ${subcommand} does not exist.`);
+			logger.warning(`The subcommand at ${subcommand} does not exist.`, "Discord");
 			interaction.reply({ content: "Invalid Subcommand." });
 			return;
 		}

@@ -28,7 +28,7 @@ module.exports.init = async function () {
 		if ("data" in command && "execute" in command) {
 			client.commands.set(command.data.name, command);
 		} else {
-			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+			logger.warning(`The command at ${filePath} is missing a required "data" or "execute" property.`, "Discord");
 		}
 	}
 
@@ -37,7 +37,7 @@ module.exports.init = async function () {
 	// Login client
 
 	client.once(Events.ClientReady, async (c) => {
-		console.log(`Ready! Logged in as ${c.user.tag}`);
+		logger.info(`Logged in as ${c.user.tag}`, "Discord");
 		await statusEmbed.init();
 		services.updateEmbed();
 	});
@@ -60,13 +60,9 @@ module.exports.init = async function () {
 				var status = statuses[id];
 				let servicesInStatus = allServices.filter((service) => service.status == id);
 
-				console.log(status, servicesInStatus.length);
-
 				if (servicesInStatus.length == 0) return null;
 
 				let listOfServicesInStatus = servicesInStatus.map((service) => service.title).join("\n");
-
-				console.log(listOfServicesInStatus);
 
 				return new EmbedBuilder().setTitle(status.title).setDescription(listOfServicesInStatus).setColor(`#${status.color}`);
 			})
