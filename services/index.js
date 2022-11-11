@@ -23,6 +23,9 @@ function updateService(name, status, description, user) {
 		logDescription += ` with the description \`${description}\``;
 	}
 
+	// Don't log if invoked via script
+	if (!user) return;
+
 	log({
 		user: user,
 		title: "Updated status",
