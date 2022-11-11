@@ -3,6 +3,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const config = require("../config.json");
 const services = require("../services/index");
+const statusEmbed = require("./modules/statusEmbed");
 require("dotenv").config();
 
 module.exports.init = async function () {
@@ -37,6 +38,7 @@ module.exports.init = async function () {
 
 	client.once(Events.ClientReady, (c) => {
 		console.log(`Ready! Logged in as ${c.user.tag}`);
+		statusEmbed.init();
 	});
 
 	client.on(Events.MessageCreate, async (c) => {

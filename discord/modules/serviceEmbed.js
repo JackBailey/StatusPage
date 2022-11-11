@@ -1,7 +1,7 @@
 const { EmbedBuilder } = require("discord.js");
 const config = require("../../config.json");
 
-module.exports.embed = (title, status, description) => {
+function embed(title, status, description) {
 	var statusConfigs = config.statuses;
 
 	var statusConfig = statusConfigs[status];
@@ -12,4 +12,17 @@ module.exports.embed = (title, status, description) => {
 		.setDescription(description || statusConfig.description);
 
 	return embed;
+}
+
+function all(services) {
+	let embeds = Object.keys(services).map((id) => {
+		var status = services[id];
+		return embed(status.title, status.status, status.customDescription);
+	});
+	return embeds;
+}
+
+module.exports = {
+	all,
+	embed,
 };

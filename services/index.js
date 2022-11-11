@@ -1,6 +1,8 @@
 const fs = require("fs");
 const config = require("../config.json");
 const { log } = require("./log");
+const statusEmbed = require("../discord/modules/statusEmbed");
+const serviceEmbed = require("../discord/modules/serviceEmbed");
 
 function getService(name) {
 	const serviceConfig = JSON.parse(fs.readFileSync("./services.json", "utf8"));
@@ -22,6 +24,8 @@ function updateService(name, status, description, user) {
 	if (description) {
 		logDescription += ` with the description \`${description}\``;
 	}
+
+	statusEmbed.update(serviceEmbed.all(allServices()));
 
 	// Don't log if invoked via script
 	if (!user) return;
