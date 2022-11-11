@@ -2,3 +2,4 @@
 config.json
 services.json
 node_modules
+key.pem
