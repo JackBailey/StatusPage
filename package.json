@@ -1,21 +1,22 @@
 {
-  "name": "StatusPage",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/JackBailey/StatusPage",
-  "author": "JackBailey",
-  "license": "MIT",
-  "private": false,
-  "scripts": {
-    "dev": "nodemon index.js -i *.json"
-  },
-  "dependencies": {
-    "@ptkdev/logger": "^1.8.0",
-    "cors": "^2.8.5",
-    "discord.js": "^14.6.0",
-    "dotenv": "^16.0.3",
-    "ejs": "^3.1.8",
-    "express": "^4.18.2",
-    "socket.io": "^4.5.3"
-  }
+	"name": "StatusPage",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "https://github.com/JackBailey/StatusPage",
+	"author": "JackBailey",
+	"license": "MIT",
+	"private": false,
+	"scripts": {
+		"dev": "nodemon index.js -i *.json",
+		"start": "node index.js"
+	},
+	"dependencies": {
+		"@ptkdev/logger": "^1.8.0",
+		"cors": "^2.8.5",
+		"discord.js": "^14.6.0",
+		"dotenv": "^16.0.3",
+		"ejs": "^3.1.8",
+		"express": "^4.18.2",
+		"socket.io": "^4.5.3"
+	}
 }
