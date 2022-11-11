@@ -5,6 +5,9 @@ module.exports = {
 		var serviceOption = interaction.options.getString("service");
 		services.reset(serviceOption, interaction.user);
 
-		await interaction.reply({ content: `Successfully reset ${serviceOption ? serviceOption + "'s status" : "All Services's statuses"}` });
+		await interaction.reply({
+			content: `Successfully reset ${serviceOption ? serviceOption + "'s status" : "All Services's statuses"}`,
+			ephemeral: true,
+		});
 	},
 };

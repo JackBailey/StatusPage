@@ -17,6 +17,6 @@ module.exports = {
 			embeds.push(serviceEmbed.embed(service.title, service.status, service.customDescription));
 		}
 
-		await interaction.reply({ embeds });
+		await interaction.reply({ embeds, ephemeral: embeds.length > 1 });
 	},
 };

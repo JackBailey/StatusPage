@@ -9,6 +9,6 @@ module.exports = {
 
 		services.service.update(serviceOption, statusOption, descriptionOption, interaction.user);
 
-		await interaction.reply({ content: `Successfully updated \`${serviceOption}\` to \`${statusOption}\`` });
+		await interaction.reply({ content: `Successfully updated \`${serviceOption}\` to \`${statusOption}\``, ephemeral: true });
 	},
 };
