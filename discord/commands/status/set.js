@@ -1,5 +1,4 @@
 const services = require("../../../services/index");
-// const serviceEmbed = require("../../modules/serviceEmbed");
 
 module.exports = {
 	async execute(interaction) {
