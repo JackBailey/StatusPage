@@ -1,6 +1,6 @@
 const fs = require("fs");
 const config = require("../config.json");
-const { log } = require("./log");
+const { log } = require("../discord/modules/log");
 const statusEmbed = require("../discord/modules/statusEmbed");
 const serviceEmbed = require("../discord/modules/serviceEmbed");
 

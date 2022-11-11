@@ -1,4 +1,4 @@
-const config = require("../config.json");
+const config = require("../../config.json");
 const { EmbedBuilder } = require("discord.js");
 
 module.exports.log = async ({ user, title, description, color }) => {
