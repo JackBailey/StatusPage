@@ -1,56 +1,23 @@
 const discord = require("./discord");
 const express = require("express");
-const services = require("./services/index");
 
 const app = express();
+app.set("view engine", "ejs");
 
 discord.init();
 
-var legacyMap = {
-	windows: "win",
-	macos: "macos",
-	ios: "ios",
-	roware: "roware",
-	website: "web",
-};
+app.get("/api/statuses", require("./api/statuses"));
 
-app.get("/api/statuses", (req, res) => {
-	res.status(200).json(services.all());
-});
+app.get("/api/status/:service", require("./api/status"));
 
-app.get("/status", (req, res) => {
-	var statuses = services.all();
+app.get("/status", require("./api/legacy/statuses"));
 
-	var legacyResponse = {};
-	Object.keys(legacyMap).map((name) => {
-		var service = statuses[name];
+app.get("/status/:service", require("./api/legacy/status"));
 
-		legacyResponse[legacyMap[name]] = {
-			customStatus: service.customDescription ? service.customDescription : null,
-			statusType: service.status,
-			name: service.title,
-		};
-	});
-
-	res.status(200).json(legacyResponse);
-});
-
-app.get("/status/:service", (req, res) => {
-	const name = req.params.service;
-
-	function swap(json) {
-		var ret = {};
-		for (var key in json) {
-			ret[json[key]] = key;
-		}
-		return ret;
-	}
-
-	var legacyToModern = swap(legacyMap);
-
-	var status = services.service.get(legacyToModern[name]);
-
-	res.send(status.status);
+// Handle 404s
+app.use((req, res) => {
+	const { errorPage } = require("./api/error");
+	errorPage(req, res, 404);
 });
 
 app.listen(process.env.PORT || 3000, () => {
