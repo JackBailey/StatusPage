@@ -1,14 +1,12 @@
 {
-	"website": {
-		"title": "Website",
-		"url": "https://jackbailey.dev",
-		"status": "offline",
-		"customDescription": false
-	},
 	"api": {
 		"title": "API",
-		"url": "https://api.jackbailey.dev",
-		"status": "limited",
-		"customDescription": "Adding more features..."
+		"status": "online",
+		"customDescription": false
+	},
+	"website": {
+		"title": "Website",
+		"status": "online",
+		"customDescription": false
 	}
 }

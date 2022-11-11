@@ -1,32 +1,37 @@
 {
-    "discord": {
-        "authorizedRoles": [
-            1040297058462089336
-        ],
-        "logChannel": {
-            "id": 1040297035078828074
-        },
-        "statusChannel": {
-            "id": 1040297027583623278,
-            "lastMessage": 0
-        }
-    },
-    "statuses": {
-        "online": {
-            "default": true,
-            "color": "3AA55D",
-            "title": "Online",
-            "description": "Service is up & Operational"
-        },
-        "limited": {
-            "color": "FAA81A",
-            "title": "Limited Functionality",
-            "description": "Some aspects of this service are temporarily unavailable"
-        },
-        "offline": {
-            "color": "ED4145",
-            "title": "Offline",
-            "description": "Service is down & Not operational"
-        }
-    }
+	"branding": {
+		"name": "CompanyName"
+	},
+	"discord": {
+		"bot": {
+			"client_id": "1000000000000000000",
+			"guild_id": "1000000000000000000"
+		},
+		"authorizedRoles": ["1000000000000000000", "1000000000000000001"],
+		"logChannel": {
+			"id": "1000000000000000000"
+		},
+		"statusChannel": {
+			"id": "1000000000000000000",
+			"lastMessage": "1000000000000000000"
+		}
+	},
+	"statuses": {
+		"online": {
+			"default": true,
+			"color": "3AA55D",
+			"title": "Online",
+			"description": "Service is up & operational"
+		},
+		"limited": {
+			"color": "FAA81A",
+			"title": "Limited Functionality",
+			"description": "Some aspects of this service are temporarily unavailable"
+		},
+		"offline": {
+			"color": "ED4145",
+			"title": "Offline",
+			"description": "Service is down & not operational"
+		}
+	}
 }
