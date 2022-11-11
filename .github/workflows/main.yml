@@ -26,4 +26,4 @@ jobs:
                   script: |
                       cd ~/statusbot
                       git pull
-                      docker compose restart
+                      docker compose up -d --build
