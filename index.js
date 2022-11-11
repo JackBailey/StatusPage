@@ -1,16 +1,21 @@
 const discord = require("./discord");
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
+
 const app = express();
 
 app.set("view engine", "ejs");
 app.use(cors());
+app.use(express.static(path.join(__dirname, "public")));
 
 discord.init();
 
 app.get("/api/statuses", require("./api/statuses"));
 
 app.get("/api/status/:service", require("./api/status"));
+
+app.get("/api/config", require("./api/config"));
 
 app.get("/status", require("./api/legacy/statuses"));
 

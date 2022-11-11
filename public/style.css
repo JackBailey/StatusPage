@@ -1,0 +1,211 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol,
+ul {
+	list-style: none;
+}
+blockquote,
+q {
+	quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: "";
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+}
+body {
+	background: #0b0f1a;
+	color: white;
+	font-family: "Poppins", sans-serif;
+}
+
+body .loader {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+body main {
+	padding: 4rem 10%;
+	box-sizing: border-box;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	display: none; /* Will be flex when loaded. */
+}
+
+body .loader img {
+	width: 5rem;
+}
+
+body main h1 {
+	font-size: 3rem;
+	text-align: center;
+	line-height: 1.5;
+}
+
+body main .statuses {
+	border: 1px solid grey;
+	width: 40rem;
+	max-width: 100%;
+	margin: 4rem auto 2rem auto;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+body main #backLink {
+	border: none;
+	font: inherit;
+	color: #449ff1;
+	text-decoration: none;
+}
+
+body main .statuses .status {
+	text-decoration: none;
+	color: white;
+	display: block;
+}
+
+body main .statuses .status .statusHeader {
+	display: grid;
+	grid-template-columns: max-content max-content;
+	gap: 1rem;
+	place-content: space-between;
+	padding: 1rem;
+}
+
+body main .statuses .status .statusHeader .currentStatus {
+	font-weight: 500;
+}
+
+body main .statuses .status .description {
+	background: #0e1422;
+	padding: 0;
+	padding: 0.8rem 1rem;
+}
+
+body main .statuses .status:not(:last-of-type) {
+	border-bottom: 1px solid grey;
+}
