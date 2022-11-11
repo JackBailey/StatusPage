@@ -1,24 +1,13 @@
-async function getStatuses() {
-	const configResponse = await fetch("http://localhost:3000/api/config");
-	const config = await configResponse.json();
-	const statusesResponse = await fetch("http://localhost:3000/api/statuses");
-	const statusesData = await statusesResponse.json();
+var socket = io();
 
-	const title = document.getElementById("title");
-	const titleText = `${config.branding.name} Status`;
-	title.innerText = titleText;
-	document.title = titleText;
-
-	const statusContainer = document.getElementById("statuses");
-	var statuses = [];
-
-	function toTitleCase(str) {
-		return str.replace(/\w\S*/g, function (txt) {
-			return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-		});
-	}
-
+function updateHTML(services, config) {
 	function serviceHTML(service, id, alwaysShowDesc) {
+		function toTitleCase(str) {
+			return str.replace(/\w\S*/g, function (txt) {
+				return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+			});
+		}
+
 		return `<a class="status" href="?service=${id}">
             <div class="statusHeader">
                 <p class="title">${service.title}</p>
@@ -38,14 +27,15 @@ async function getStatuses() {
 		get: (searchParams, prop) => searchParams.get(prop),
 	});
 
-	var statuses = [];
-	Object.keys(statusesData).forEach((id) => {
+	var serviceData = [];
+	Object.keys(services).forEach((id) => {
 		if (params.service !== null && params.service !== id) return;
-		var service = statusesData[id];
-		statuses.push(serviceHTML(service, id, params.service !== null));
+		var service = services[id];
+		serviceData.push(serviceHTML(service, id, params.service !== null));
 	});
 
-	statusContainer.innerHTML = statuses.join("\n");
+	const statusContainer = document.getElementById("statuses");
+	statusContainer.innerHTML = serviceData.join("\n");
 
 	const main = document.getElementById("main");
 	main.style.display = "flex";
@@ -55,7 +45,24 @@ async function getStatuses() {
 	backLink.style.display = params.service !== null ? "block" : "none";
 }
 
-getStatuses();
-setInterval(() => {
-	getStatuses();
-}, 5000);
+async function main() {
+	const configResponse = await fetch("http://localhost:3000/api/config");
+	const config = await configResponse.json();
+	const statusesResponse = await fetch("http://localhost:3000/api/statuses");
+	const statusesData = await statusesResponse.json();
+
+	const title = document.getElementById("title");
+	const titleText = `${config.branding.name} Status`;
+	title.innerText = titleText;
+	document.title = titleText;
+
+	updateHTML(statusesData, config);
+
+	socket.on("serviceUpdated", function (msg) {
+		console.log(`${msg.service.title} updated to ${msg.service.status}!`);
+		statusesData[msg.id] = msg.service;
+		updateHTML(statusesData, config);
+	});
+}
+
+main();

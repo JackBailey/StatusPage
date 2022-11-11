@@ -3,6 +3,7 @@ const config = require("../config.json");
 const { log } = require("../discord/modules/log");
 const statusEmbed = require("../discord/modules/statusEmbed");
 const serviceEmbed = require("../discord/modules/serviceEmbed");
+const { isObject } = require("util");
 
 function getService(name) {
 	const serviceConfig = JSON.parse(fs.readFileSync("./services.json", "utf8"));
@@ -26,6 +27,11 @@ function updateService(name, status, description, user) {
 	}
 
 	updateEmbed();
+
+	io.emit("serviceUpdated", {
+		id: name,
+		service,
+	});
 
 	// Don't log if invoked via script
 	if (!user) return;
