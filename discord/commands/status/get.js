@@ -8,7 +8,7 @@ module.exports = {
 		var embeds = [];
 
 		if (!serviceOption) {
-			var allServices = services.list();
+			var allServices = services.all();
 			Object.values(allServices).forEach((service) => {
 				embeds.push(serviceEmbed.embed(service.title, service.status, service.customDescription));
 			});
