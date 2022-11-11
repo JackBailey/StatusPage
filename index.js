@@ -1,8 +1,10 @@
 const discord = require("./discord");
 const express = require("express");
-
+const cors = require("cors");
 const app = express();
+
 app.set("view engine", "ejs");
+app.use(cors());
 
 discord.init();
 
