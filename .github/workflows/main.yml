@@ -27,4 +27,4 @@ jobs:
                       cd ~/statusbot
                       git reset --hard
                       git pull
-                      docker compose up --build --force-recreate
+                      docker compose up -d --build --force-recreate
