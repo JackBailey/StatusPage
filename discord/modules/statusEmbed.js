@@ -7,6 +7,7 @@ async function init() {
 	var channel = await client.channels.cache.get(config.discord.statusChannel.id);
 	try {
 		var message = await channel.messages.fetch(config.discord.statusChannel.lastMessage);
+		if (message.author.id != client.user.id) throw new Error("Selected message was not created by the bot");
 	} catch {
 		var message = await channel.send({ content: "Loading..." });
 		config.discord.statusChannel.lastMessage = message.id;
