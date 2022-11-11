@@ -36,9 +36,10 @@ module.exports.init = async function () {
 
 	// Login client
 
-	client.once(Events.ClientReady, (c) => {
+	client.once(Events.ClientReady, async (c) => {
 		console.log(`Ready! Logged in as ${c.user.tag}`);
-		statusEmbed.init();
+		await statusEmbed.init();
+		services.updateEmbed();
 	});
 
 	client.on(Events.MessageCreate, async (c) => {

@@ -25,8 +25,6 @@ function updateService(name, status, description, user) {
 		logDescription += ` with the description \`${description}\``;
 	}
 
-	statusEmbed.update(serviceEmbed.all(allServices()));
-
 	// Don't log if invoked via script
 	if (!user) return;
 
@@ -36,6 +34,10 @@ function updateService(name, status, description, user) {
 		description: logDescription,
 		color: config.statuses[service.status].color,
 	});
+}
+
+function updateEmbed() {
+	statusEmbed.update(serviceEmbed.all(allServices()));
 }
 
 function reset(name, user) {
@@ -74,4 +76,5 @@ module.exports = {
 	},
 	all: allServices,
 	reset,
+	updateEmbed,
 };
