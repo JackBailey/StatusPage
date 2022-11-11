@@ -9,12 +9,13 @@ module.exports = {
 
 		if (!serviceOption) {
 			var allServices = services.all();
-			Object.values(allServices).forEach((service) => {
-				embeds.push(serviceEmbed.embed(service.title, service.status, service.customDescription));
+			Object.keys(allServices).forEach((id) => {
+				const service = allServices[id];
+				embeds.push(serviceEmbed.embed(service, id));
 			});
 		} else {
 			var service = services.service.get(serviceOption);
-			embeds.push(serviceEmbed.embed(service.title, service.status, service.customDescription));
+			embeds.push(serviceEmbed.embed(service, serviceOption));
 		}
 
 		await interaction.reply({ embeds, ephemeral: embeds.length > 1 });

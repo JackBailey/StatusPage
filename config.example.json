@@ -1,6 +1,7 @@
 {
 	"branding": {
-		"name": "CompanyName"
+		"name": "CompanyName",
+		"url": "https://example.com"
 	},
 	"discord": {
 		"bot": {

@@ -1,10 +1,10 @@
 const { EmbedBuilder } = require("discord.js");
 const config = require("../../config.json");
 
-function embed(title, status, description) {
+function embed(service, id) {
 	var statusConfigs = config.statuses;
 
-	var statusConfig = statusConfigs[status];
+	var statusConfig = statusConfigs[service.status];
 
 	function toTitleCase(str) {
 		return str.replace(/\w\S*/g, function (txt) {
@@ -14,8 +14,9 @@ function embed(title, status, description) {
 
 	const embed = new EmbedBuilder()
 		.setColor(`#${statusConfig.color}`)
-		.setTitle(title)
-		.setDescription(toTitleCase(status) + " - " + (description || statusConfig.description));
+		.setTitle(service.title)
+		.setURL(`${config.branding.url}/?service=${id}`)
+		.setDescription(toTitleCase(service.status) + " - " + (service.description || statusConfig.description));
 
 	return embed;
 }
@@ -23,7 +24,7 @@ function embed(title, status, description) {
 function all(services) {
 	let embeds = Object.keys(services).map((id) => {
 		var status = services[id];
-		return embed(status.title, status.status, status.customDescription);
+		return embed(status, id);
 	});
 	return embeds;
 }
