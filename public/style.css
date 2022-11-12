@@ -184,6 +184,7 @@ body main .icons a {
 	text-decoration: none;
 	color: inherit;
 	font-size: 1.5rem;
+	margin-bottom: 1rem;
 }
 
 body main #backLink {
