@@ -19,7 +19,7 @@ jobs:
         steps:
             - name: "Merge with master"
               run: |
-                  git clone ${{env.MY_REPO}} -b ${{env.MY_BRANCH}}
+                  git clone ${{env.MY_REPO}} -b ${{env.MY_BRANCH}} tmp
                   cd tmp
                   git config user.name "JackBailey"
                   git config user.email "jack@jackbailey.dev"
