@@ -27,6 +27,10 @@ app.get("/api/status/:service", require("./api/status"));
 
 app.get("/api/config", require("./api/config"));
 
+app.get("/status", require("./api/legacy/statuses"));
+
+app.get("/status/:service", require("./api/legacy/status"));
+
 // websocket
 
 io.on("connection", (socket) => {
