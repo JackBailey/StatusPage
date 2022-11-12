@@ -25,6 +25,7 @@ jobs:
                   git push
 
     build-and-deploy:
+        needs: merge
         runs-on: ubuntu-latest
         steps:
             - name: Install SSH Key
