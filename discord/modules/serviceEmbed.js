@@ -16,7 +16,7 @@ function embed(service, id) {
 		.setColor(`#${statusConfig.color}`)
 		.setTitle(service.title)
 		.setURL(`${config.branding.url}/?service=${id}`)
-		.setDescription(toTitleCase(service.status) + " - " + (service.description || statusConfig.description));
+		.setDescription(toTitleCase(service.status) + " - " + (service.customDescription || statusConfig.description));
 
 	return embed;
 }
