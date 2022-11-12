@@ -56,7 +56,15 @@ async function main() {
 	title.innerText = titleText;
 	document.title = titleText;
 
+	const githubSource = document.getElementById("githubSource");
+	githubSource.style.display = config.showGithub ? "block" : "none";
 	updateHTML(statusesData, config);
+
+	const discordInvite = document.getElementById("discord");
+	discordInvite.style.display = config.invite ? "block" : none;
+	if (config.invite) {
+		discordInvite.attributes.href.value = config.invite;
+	}
 
 	socket.on("serviceUpdated", function (msg) {
 		console.log(`${msg.service.title} updated to ${msg.service.status}!`);

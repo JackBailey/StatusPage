@@ -11,11 +11,26 @@
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 		<script src="script.js" defer></script>
 		<script src="/socket.io/socket.io.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
 	</head>
 	<body>
 		<main id="main">
 			<h1 id="title"></h1>
 			<div class="statuses" id="statuses"> </div>
+			<div class="icons">
+				<a href="#" id="discord" target="_blank">
+					<i class="fa-brands fa-discord"></i>
+				</a>
+				<a href="https://github.com/JackBailey/StatusPage" id="githubSource" target="_blank">
+					<i class="fa-brands fa-github"></i>
+				</a>
+			</div>
 			<a href="/" id="backLink">Back </a>
 		</main>
 		<div class="loader" id="loader">
