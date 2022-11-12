@@ -204,6 +204,7 @@ body main .statuses .status .description {
 	background: #0e1422;
 	padding: 0;
 	padding: 0.8rem 1rem;
+	line-height: 1.8;
 }
 
 body main .statuses .status:not(:last-of-type) {
