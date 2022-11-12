@@ -1,6 +1,7 @@
 version: "2"
 services:
     web:
+        container_name: StatusPage
         build: .
         command: npm run start
         volumes:
