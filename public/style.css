@@ -175,6 +175,17 @@ body main .statuses {
 	overflow: hidden;
 }
 
+body main .icons {
+	display: flex;
+	gap: 1rem;
+}
+
+body main .icons a {
+	text-decoration: none;
+	color: inherit;
+	font-size: 1.5rem;
+}
+
 body main #backLink {
 	border: none;
 	font: inherit;

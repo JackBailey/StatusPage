@@ -4,6 +4,8 @@
 		"url": "https://example.com"
 	},
 	"discord": {
+		"invite": "https://discord.gg/",
+		"enableGithubIcon": true,
 		"bot": {
 			"client_id": "1000000000000000000",
 			"guild_id": "1000000000000000000"

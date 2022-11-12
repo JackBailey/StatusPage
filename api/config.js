@@ -6,8 +6,13 @@ const config = require("../config.json");
 
 router.get("*", (req, res) => {
 	try {
-		const { statuses, branding } = config;
-		res.status(200).json({ statuses, branding });
+		const {
+			statuses,
+			branding,
+			discord: { invite, enableGithubIcon: showGithub },
+		} = config;
+		console.log(invite);
+		res.status(200).json({ statuses, branding, invite, showGithub });
 	} catch (e) {
 		console.log(e);
 		return errorPage(req, res, 500);
