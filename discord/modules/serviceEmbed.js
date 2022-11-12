@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require("discord.js");
+const { EmbedBuilder, Embed } = require("discord.js");
 const config = require("../../config.json");
 
 function embed(service, id) {
@@ -22,10 +22,22 @@ function embed(service, id) {
 }
 
 function all(services) {
-	let embeds = Object.keys(services).map((id) => {
+	let embeds = [];
+
+	if (config.discord.embedHeader.enabled) {
+		embeds.push(
+			new EmbedBuilder()
+				.setTitle(config.discord.embedHeader.title)
+				.setDescription(config.discord.embedHeader.description)
+				.setColor(`#${config.discord.embedHeader.color}`)
+		);
+	}
+
+	Object.keys(services).forEach((id) => {
 		var status = services[id];
-		return embed(status, id);
+		embeds.push(embed(status, id));
 	});
+
 	return embeds;
 }
 

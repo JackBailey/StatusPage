@@ -15,6 +15,12 @@
 		"statusChannel": {
 			"id": "1000000000000000000",
 			"lastMessage": "1000000000000000000"
+		},
+		"embedHeader": {
+			"enabled": true,
+			"title": "Example Status Page",
+			"description": "View live at https://example.com\nSource code at https://jck.cx/g/StatusPage\nMade by <@154608413412818944>",
+			"color": "6b33b5"
 		}
 	},
 	"statuses": {
