@@ -1,9 +1,29 @@
-name: deploy
+name: Merge and deploy
 on:
     push:
         branches:
-            - legacy
+            - master
+
+env:
+    MY_REPO: https://JackBailey:${{secrets.GITHUB_TOKEN}}@github.com/JackBailey/StatusPage.git
+    MY_BRANCH: legacy
+    MASTER_REPO: https://github.com/JackBailey/StatusPage.git
+    MASTER_BRANCH: master
+
 jobs:
+    merge:
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Merge legacy with master"
+              run: |
+                  git clone ${{env.MY_REPO}} -b ${{env.MY_BRANCH}} tmp
+                  cd tmp
+                  git config user.name "JackBailey"
+                  git config user.email "jack@jackbailey.dev"
+                  git config pull.rebase false
+                  git pull ${{env.MASTER_REPO}} ${{env.MASTER_BRANCH}}
+                  git push
+
     build-and-deploy:
         runs-on: ubuntu-latest
         steps:
