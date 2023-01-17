@@ -1,5 +1,5 @@
 const { EmbedBuilder, Embed } = require("discord.js");
-const config = require("../../config.json");
+const config = require.main.require("./config.json");
 
 function embed(service, id) {
 	var statusConfigs = config.statuses;

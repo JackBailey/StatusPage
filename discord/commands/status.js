@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const path = require("node:path");
 const fs = require("node:fs");
 const servicesConfig = require("../../services.json");
-const config = require("../../config.json");
+const config = require.main.require("./config.json");
 
 const commandsPath = path.join(__dirname, "status");
 const commandFiles = fs.readdirSync(commandsPath).filter((file) => file.endsWith(".js"));

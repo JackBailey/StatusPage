@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const humanizeDuration = require("humanize-duration");
-const config = require("../../config.json");
+const config = require.main.require("./config.json");
 const started = new Date().getTime();
 
 module.exports = {
