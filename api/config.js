@@ -2,7 +2,7 @@ const services = require("../services/index");
 const express = require("express");
 const router = express.Router();
 const { errorPage } = require("./error");
-const config = require.main.require("./config.json");
+const config = require("../config.json");
 
 router.get("*", (req, res) => {
 	try {
