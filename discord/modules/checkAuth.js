@@ -1,4 +1,4 @@
-const config = require("../../config.json");
+const config = require.main.require("./config.json");
 const { EmbedBuilder } = require("discord.js");
 
 module.exports.userAuthorized = (interaction) => {
