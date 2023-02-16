@@ -22,12 +22,13 @@ router.get("/api/status/:service", (req, res) => {
 router.get("/api/status/:service/badge", (req, res) => {
 	try {
 		const name = req.params.service;
+		const altLabel = req.query.label;
 
 		var status = services.service.get(name);
 		if (!status) return errorPage(req, res, "404");
 
 		const format = {
-			label: status.title,
+			label: altLabel || status.title,
 			message: status.status,
 			color: config.statuses[status.status].color,
 		};
