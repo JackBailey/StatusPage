@@ -25,6 +25,8 @@ app.get("/api/statuses", require("./api/statuses"));
 
 app.get("/api/status/:service", require("./api/status"));
 
+app.get("/api/status/:service/badge", require("./api/status"));
+
 app.get("/api/config", require("./api/config"));
 
 // websocket
